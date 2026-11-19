@@ -5,7 +5,7 @@
    2. Mobile menu
    3. Active link highlighting
    4. Scroll reveal animations
-   5. Portfolio video player
+   5. Portfolio video players
    6. Logo fallback
    7. Copy email button
    8. Contact form (opens the visitor's email app — free, no server)
@@ -102,13 +102,16 @@
     reveals.forEach(function (el) { el.classList.add("is-visible"); });
   }
 
-  /* ---------- 5. Portfolio video player ---------- */
-  var videoWrap = document.querySelector("[data-video]");
-  if (videoWrap) {
+  /* ---------- 5. Portfolio video players ---------- */
+  // Works for every film on the page (any element with data-video)
+  var allVideos = [];
+
+  document.querySelectorAll("[data-video]").forEach(function (videoWrap) {
     var video = videoWrap.querySelector("video");
     var playBtn = videoWrap.querySelector(".video__play");
     var placeholder = videoWrap.querySelector(".video__placeholder");
     var source = video.querySelector("source");
+    allVideos.push(video);
 
     function showPlaceholder() {
       placeholder.hidden = false;
@@ -126,7 +129,11 @@
       if (attempt && attempt.catch) attempt.catch(function () { /* user can press play in controls */ });
     });
 
-    video.addEventListener("play", function () { videoWrap.classList.add("is-playing"); });
+    video.addEventListener("play", function () {
+      videoWrap.classList.add("is-playing");
+      // Only one film plays at a time
+      allVideos.forEach(function (other) { if (other !== video && !other.paused) other.pause(); });
+    });
     video.addEventListener("ended", function () {
       videoWrap.classList.remove("is-playing");
       video.controls = false;
@@ -139,7 +146,7 @@
         if (!entries[0].isIntersecting && !video.paused) video.pause();
       }, { threshold: 0.2 }).observe(videoWrap);
     }
-  }
+  });
 
   /* ---------- 6. Logo fallback ---------- */
   // If the logo image can't load, show the brand name in text instead.

@@ -512,6 +512,13 @@ em { font-style: italic; }
   color: rgba(245, 241, 233, 0.45);
 }
 
+.film-two {
+  margin-top: var(--section-space);
+  padding-top: var(--section-space);
+  border-top: 1px solid var(--black-line);
+}
+.project-info--last { border-bottom: 0; padding-bottom: 0; }
+
 /* ---------- Services ---------- */
 .services__grid {
   display: grid;
