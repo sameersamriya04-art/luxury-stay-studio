@@ -17,7 +17,8 @@ It needs no build tools, no paid services and no server code.
 | `js/main.js` | The behaviour: phone menu, scroll animations, video player, contact form |
 | `assets/logo/lss-logo.png` | Your logo (transparent background) |
 | `assets/logo/favicon.svg` | The small icon in the browser tab |
-| `assets/video/the-art-of-escape.mp4` | Your *The Art of Escape* film |
+| `assets/video/the-art-of-escape.mp4` | Project 01 — *The Art of Escape* film |
+| `assets/video/Villa_In_Motion_LSS_1080p24.mp4` | Project 02 — *Villa in Motion* film |
 | `assets/images/` | Photos used on the page |
 | `.nojekyll` | Tells GitHub Pages to show the site exactly as-is |
 
@@ -48,7 +49,15 @@ name it `lss-logo.png`, and replace the file in `assets/logo/`.
 "Video coming soon" box instead of an error. Keep videos under about 50 MB
 (GitHub refuses files over 100 MB).
 
-**Replace the video cover image:** replace `assets/images/art-of-escape-poster.jpg`.
+**Replace a video cover image:** replace `assets/images/art-of-escape-poster.jpg`
+(Project 01) or `assets/images/villa-in-motion-poster.jpg` (Project 02).
+The smaller `...-card.jpg` images are the thumbnails on the portfolio cards.
+
+**Portfolio layout:** the Portfolio section shows two cards (one per film), then
+Project 01 *The Art of Escape*, then Project 02 *Villa in Motion*, then a
+"Your Property. Its Own Story." button that jumps to the contact form.
+To add Project 03 later, copy the Project 02 block in `index.html`
+(it starts at `<!-- ============ PROJECT 02`) and copy one of the cards.
 
 **Replace photos:** replace the files in `assets/images/` and keep the same names,
 or change the `src="..."` in `index.html`.
@@ -67,7 +76,7 @@ and they press Send. Nothing is stored on the website.
 
 ## Honesty notes
 
-- *The Art of Escape* is clearly labelled everywhere as an **AI-assisted conceptual
-  project, not a real client project**.
+- *The Art of Escape* and *Villa in Motion* are clearly labelled everywhere as an **AI-assisted conceptual
+  project, not real/commissioned client work**.
 - The site has no made-up clients, testimonials, awards or numbers. When you have real
   client projects, you can add them in the Portfolio section.

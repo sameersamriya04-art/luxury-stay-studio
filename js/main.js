@@ -148,6 +148,21 @@
     }
   });
 
+  // "Watch Film" buttons on the portfolio cards:
+  // the link scrolls to the film, then the film starts once it's on screen.
+  // (Only ever starts after a visitor taps — never autoplays on page load.)
+  document.querySelectorAll("[data-play-target]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      var target = document.getElementById(link.getAttribute("data-play-target"));
+      if (!target || target.hidden) return;
+      var btn = target.parentNode.querySelector(".video__play");
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      setTimeout(function () {
+        if (target.paused && btn && !btn.hidden) btn.click();
+      }, reduced ? 100 : 900);
+    });
+  });
+
   /* ---------- 6. Logo fallback ---------- */
   // If the logo image can't load, show the brand name in text instead.
   document.querySelectorAll("[data-logo]").forEach(function (img) {

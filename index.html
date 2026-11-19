@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Luxury Stay Studio — Property Cinematics</title>
-  <meta name="description" content="Luxury Stay Studio (LSS) creates cinematic films for luxury villas, Airbnb homes, boutique hotels and resorts worldwide. We Turn Properties Into Experiences.">
+  <meta name="description" content="Luxury Stay Studio (LSS) creates cinematic films for luxury villas, Airbnb homes, boutique hotels and resorts worldwide. Watch our concept films The Art of Escape and Villa in Motion. We Turn Properties Into Experiences.">
   <meta name="theme-color" content="#111111">
 
   <!-- Social sharing preview (WhatsApp, Instagram, LinkedIn etc.) -->
@@ -21,6 +21,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Search engine info about the two portfolio films (helps Google understand the videos) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "VideoObject",
+        "name": "Villa in Motion | Luxury Villa Cinematic | Luxury Stay Studio",
+        "description": "Explore Villa in Motion, an AI-assisted cinematic concept by Luxury Stay Studio, showcasing tropical luxury architecture, refined interiors, and immersive hospitality storytelling.",
+        "thumbnailUrl": "assets/images/villa-in-motion-poster.jpg",
+        "contentUrl": "assets/video/Villa_In_Motion_LSS_1080p24.mp4",
+        "uploadDate": "2026-11-19",
+        "duration": "PT51S",
+        "genre": "Luxury Villa Cinematic",
+        "creator": { "@type": "Organization", "name": "Luxury Stay Studio" }
+      },
+      {
+        "@type": "VideoObject",
+        "name": "The Art of Escape | Concept Film | Luxury Stay Studio",
+        "description": "The Art of Escape, an AI-assisted conceptual showcase by Luxury Stay Studio demonstrating cinematic pacing, light, music and storytelling for luxury properties.",
+        "thumbnailUrl": "assets/images/art-of-escape-poster.jpg",
+        "contentUrl": "assets/video/the-art-of-escape.mp4",
+        "uploadDate": "2026-11-11",
+        "duration": "PT41S",
+        "creator": { "@type": "Organization", "name": "Luxury Stay Studio" }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -71,7 +101,7 @@
           crafted to make guests feel the stay before they book it.
         </p>
         <div class="hero__actions anim-hero">
-          <a href="#portfolio" class="btn btn--gold">
+          <a href="#project-01" class="btn btn--gold">
             <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
             Watch The Art of Escape
           </a>
@@ -101,12 +131,58 @@
       </div>
     </section>
 
-    <!-- ============ 2. FEATURED PORTFOLIO ============ -->
+    <!-- ============ 2. PORTFOLIO ============ -->
     <section class="portfolio section" id="portfolio">
       <div class="container">
+
+        <!-- ---------- Portfolio overview: one card per project ---------- -->
+        <header class="section-head reveal">
+          <p class="eyebrow">Selected Work</p>
+          <h2 class="section-title">Portfolio</h2>
+          <p class="section-lead">Concept films that show the cinematic style we bring to every property.</p>
+        </header>
+
+        <div class="cards">
+          <!-- Card: Project 01 -->
+          <article class="card reveal">
+            <a href="#project-01" class="card__media" data-play-target="aoe-video" aria-label="Watch The Art of Escape">
+              <img src="assets/images/art-of-escape-card.jpg" alt="Clifftop infinity pool and villa at sunset — still from The Art of Escape" loading="lazy" width="960" height="540">
+              <span class="card__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+              <span class="card__runtime">0:41</span>
+            </a>
+            <div class="card__body">
+              <h3 class="card__title">The Art of Escape</h3>
+              <p class="card__kicker">Concept Film 01</p>
+              <p class="card__category">Coastal Villa Cinematic</p>
+              <p class="card__text">A conceptual showcase of the pacing, light, music and storytelling we bring to every property.</p>
+              <p class="card__label">AI-assisted concept project</p>
+              <a href="#project-01" class="card__link" data-play-target="aoe-video">Watch Film <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <!-- Card: Project 02 -->
+          <article class="card reveal">
+            <a href="#project-02" class="card__media" data-play-target="vim-video" aria-label="Watch Villa in Motion">
+              <img src="assets/images/villa-in-motion-card.jpg" alt="Tropical stone and timber villa with an infinity pool at dusk — still from Villa in Motion" loading="lazy" width="960" height="540">
+              <span class="card__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+              <span class="card__runtime">0:51</span>
+            </a>
+            <div class="card__body">
+              <h3 class="card__title">Villa in Motion</h3>
+              <p class="card__kicker">Concept Film 02</p>
+              <p class="card__category">Luxury Villa Cinematic</p>
+              <p class="card__text">An AI-assisted cinematic journey through tropical architecture, refined interiors, and exceptional outdoor living.</p>
+              <p class="card__label">AI-assisted concept project</p>
+              <a href="#project-02" class="card__link" data-play-target="vim-video">Watch Film <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </div>
+
+        <!-- ============ PROJECT 01: THE ART OF ESCAPE ============ -->
+        <article class="project" id="project-01" aria-labelledby="project-01-title">
         <header class="section-head reveal">
           <p class="eyebrow">Featured Project</p>
-          <h2 class="section-title">The Art of Escape</h2>
+          <h2 class="section-title" id="project-01-title">The Art of Escape</h2>
           <p class="concept-badge">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
             AI-assisted conceptual project — not a real client project
@@ -119,8 +195,9 @@
           or change the src="" below.
         -->
         <div class="video reveal" data-video>
-          <video class="video__player" preload="metadata" playsinline
-                 poster="assets/images/art-of-escape-poster.jpg">
+          <video class="video__player" id="aoe-video" preload="metadata" playsinline
+                 poster="assets/images/art-of-escape-poster.jpg"
+                 aria-label="The Art of Escape — AI-assisted concept film by Luxury Stay Studio">
             <source src="assets/video/the-art-of-escape.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
           </video>
@@ -169,53 +246,93 @@
         </div>
         <p class="stills__note reveal">Concept stills from <em>The Art of Escape</em> · AI-assisted imagery</p>
 
-        <!-- ============ SECOND FILM: VILLA IN MOTION ============ -->
-        <div class="film-two">
+        </article>
+
+        <!-- ============ PROJECT 02: VILLA IN MOTION ============ -->
+        <!--
+          VIDEO: assets/video/Villa_In_Motion_LSS_1080p24.mp4
+          COVER IMAGE: assets/images/villa-in-motion-poster.jpg
+        -->
+        <article class="project project--next" id="project-02" aria-labelledby="project-02-title">
           <header class="section-head reveal">
-            <p class="eyebrow">Showcase Film</p>
-            <h2 class="section-title">Villa in Motion</h2>
-            <!-- If this film shows a real client property, change the label below. -->
+            <p class="eyebrow">Project 02</p>
+            <h2 class="section-title" id="project-02-title">Villa in Motion</h2>
+            <p class="project-tags"><span class="tag">Tropical Luxury</span> <span class="sep" aria-hidden="true">|</span> <span class="tag">Architecture</span> <span class="sep" aria-hidden="true">|</span> <span class="tag">Cinematic Storytelling</span></p>
             <p class="concept-badge">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
-              AI-assisted conceptual project — not a real client project
+              AI-assisted concept project — not commissioned client work
             </p>
           </header>
 
           <div class="video reveal" data-video>
-            <video class="video__player" preload="metadata" playsinline
-                   poster="assets/images/villa-in-motion-poster.jpg">
-              <source src="assets/video/villa-in-motion.mp4" type="video/mp4">
+            <video class="video__player" id="vim-video" preload="metadata" playsinline
+                   poster="assets/images/villa-in-motion-poster.jpg"
+                   aria-label="Villa in Motion — AI-assisted luxury villa concept film by Luxury Stay Studio">
+              <source src="assets/video/Villa_In_Motion_LSS_1080p24.mp4" type="video/mp4">
               Your browser does not support HTML5 video.
+              <a href="assets/video/Villa_In_Motion_LSS_1080p24.mp4">Download Villa in Motion (MP4)</a>
             </video>
 
-            <button class="video__play" type="button" aria-label="Play the Villa in Motion film">
+            <button class="video__play" type="button" aria-label="Play Villa in Motion, 51 seconds">
               <span class="video__play-ring">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
               </span>
               <span class="video__play-label">Play Film · 0:51</span>
             </button>
 
+            <!-- Shown automatically only if the video file is missing -->
             <div class="video__placeholder" hidden>
               <p class="eyebrow">Video coming soon</p>
-              <p>Add your film as <code>assets/video/villa-in-motion.mp4</code></p>
+              <p>Add your film as <code>assets/video/Villa_In_Motion_LSS_1080p24.mp4</code></p>
             </div>
           </div>
 
-          <div class="project-info project-info--last reveal">
-            <div class="project-info__text">
+          <div class="project-detail">
+            <div class="project-detail__story reveal">
+              <p class="project-detail__lead">An immersive cinematic exploration of tropical luxury architecture.</p>
               <p>
-                <em>Villa in Motion</em> is a showcase film by Luxury Stay Studio — a tropical
-                villa told through flowing water, warm timber, open living spaces and a golden
-                sunset finale.
+                <em>Villa in Motion</em> captures the beauty of contemporary tropical living through
+                elegant stone architecture, warm timber details, expansive glass interiors, tranquil
+                poolside moments, and atmospheric outdoor spaces.
+              </p>
+              <p>
+                From architectural reveals to intimate interior details, every scene is designed to
+                evoke the feeling of an extraordinary private escape.
+              </p>
+              <p>
+                A creative demonstration of how cinematic storytelling and AI-assisted visual
+                production can transform property imagery into an immersive visual experience.
               </p>
             </div>
-            <dl class="project-info__meta">
-              <div><dt>Type</dt><dd>Concept film</dd></div>
-              <div><dt>Runtime</dt><dd>0:51</dd></div>
-              <div><dt>Format</dt><dd>16:9 · 1080p</dd></div>
-              <div><dt>Created with</dt><dd>AI-assisted visuals</dd></div>
-            </dl>
+
+            <aside class="project-detail__side reveal" aria-label="Villa in Motion project details">
+              <dl class="project-info__meta">
+                <div><dt>Project</dt><dd>Concept Film 02</dd></div>
+                <div><dt>Category</dt><dd>Luxury Villa Cinematic</dd></div>
+                <div><dt>Production</dt><dd>AI-assisted concept</dd></div>
+                <div><dt>Runtime</dt><dd>0:51</dd></div>
+                <div><dt>Format</dt><dd>1920 × 1080 · 16:9</dd></div>
+                <div><dt>Frame rate</dt><dd>24 fps · MP4</dd></div>
+              </dl>
+
+              <h3 class="direction__title">Creative Direction</h3>
+              <ul class="direction">
+                <li>Contemporary tropical architecture</li>
+                <li>Natural stone and warm timber</li>
+                <li>Expansive glass interiors</li>
+                <li>Infinity pool and outdoor living</li>
+                <li>Cinematic hospitality storytelling</li>
+              </ul>
+            </aside>
           </div>
+        </article>
+
+        <!-- ============ PORTFOLIO CALL TO ACTION ============ -->
+        <div class="project-cta reveal">
+          <span class="divider" aria-hidden="true"></span>
+          <h3 class="project-cta__title">Your Property. <em>Its Own Story.</em></h3>
+          <p class="project-cta__text">Let's create a cinematic experience that makes your property unforgettable.</p>
+          <a href="#contact" class="btn btn--gold">Create Your Property Film</a>
         </div>
       </div>
     </section>
