@@ -68,6 +68,27 @@ or change the `src="..."` in `index.html`.
 **Change your services:** they're in `index.html` under `3. SERVICES`.
 Edit them so they match exactly what you offer.
 
+## Upload your PDF portfolio (manual step)
+
+The **Download Our Portfolio** buttons (in Portfolio and Contact) say
+"PDF · Coming soon" until your PDF exists. Once it's uploaded they turn into
+working download buttons automatically — no code changes needed.
+
+**Easiest:** send the PDF to Claude in chat and ask for it to be added.
+
+**Or upload it yourself (on a computer):**
+1. Name your file exactly: `Luxury_Stay_Studio_Portfolio.pdf`
+2. On your computer, create a folder named `docs` and put the PDF inside it.
+3. On GitHub, open this repository, switch to the branch
+   `claude/luxury-stay-studio-website-yvtj5s` (branch menu, top left),
+   then open the `assets` folder.
+4. Click **Add file → Upload files** and drag the whole `docs` folder in
+   (GitHub keeps the folder, so the file lands at
+   `assets/docs/Luxury_Stay_Studio_Portfolio.pdf`).
+5. Click **Commit changes**. After 1–2 minutes the live site updates.
+
+Keep the PDF under about 20 MB so it downloads quickly on phones.
+
 ## How the contact form works
 
 The form costs nothing and needs no server. When a visitor presses **Send Enquiry**,

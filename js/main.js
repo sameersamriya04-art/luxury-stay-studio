@@ -163,6 +163,30 @@
     });
   });
 
+  /* ---------- 5b. "Download Our Portfolio" PDF button ---------- */
+  // The button shows "Coming soon" until the PDF is uploaded to GitHub at
+  // assets/docs/Luxury_Stay_Studio_Portfolio.pdf. When the file exists,
+  // it becomes a working download automatically — no code change needed.
+  var pdfButtons = document.querySelectorAll(".pdf-btn[data-pdf]");
+  if (pdfButtons.length && window.fetch && location.protocol.indexOf("http") === 0) {
+    var pdfPath = pdfButtons[0].getAttribute("data-pdf");
+    fetch(pdfPath, { method: "HEAD", cache: "no-store" })
+      .then(function (res) {
+        var type = res.headers.get("content-type") || "";
+        if (!res.ok || type.indexOf("pdf") === -1) return;
+        pdfButtons.forEach(function (btn) {
+          btn.setAttribute("href", pdfPath);
+          btn.setAttribute("download", "");
+          btn.removeAttribute("aria-disabled");
+          btn.classList.remove("is-pending");
+          btn.classList.add("is-ready");
+          var status = btn.querySelector(".pdf-btn__status");
+          if (status) status.textContent = "PDF";
+        });
+      })
+      .catch(function () { /* keep the "Coming soon" state */ });
+  }
+
   /* ---------- 6. Logo fallback ---------- */
   // If the logo image can't load, show the brand name in text instead.
   document.querySelectorAll("[data-logo]").forEach(function (img) {
