@@ -45,8 +45,8 @@ name it `lss-logo.png`, and replace the file in `assets/logo/`.
 (The current logo was cut from the last frame of your video. Your original file will look sharper.)
 
 **Replace the video:** put your new film in `assets/video/` with the name
-`the-art-of-escape.mp4`. If the file is ever missing, the site shows a neat
-"Video coming soon" box instead of an error. Keep videos under about 50 MB
+`the-art-of-escape.mp4`. If a film can't be loaded, the player shows a short
+"Film unavailable" notice with a direct link instead of an error. Keep videos under about 50 MB
 (GitHub refuses files over 100 MB).
 
 **Replace a video cover image:** replace `assets/images/art-of-escape-poster.jpg`
@@ -68,32 +68,22 @@ or change the `src="..."` in `index.html`.
 **Change your services:** they're in `index.html` under `3. SERVICES`.
 Edit them so they match exactly what you offer.
 
-## Upload your PDF portfolio (manual step)
+## PDF portfolio
 
-The **Download Our Portfolio** buttons (in Portfolio and Contact) say
-"PDF · Coming soon" until your PDF exists. Once it's uploaded they turn into
-working download buttons automatically — no code changes needed.
-
-**Easiest:** send the PDF to Claude in chat and ask for it to be added.
-
-**Or upload it yourself (on a computer):**
-1. Name your file exactly: `Luxury_Stay_Studio_Portfolio.pdf`
-2. On your computer, create a folder named `docs` and put the PDF inside it.
-3. On GitHub, open this repository, switch to the branch
-   `claude/luxury-stay-studio-website-yvtj5s` (branch menu, top left),
-   then open the `assets` folder.
-4. Click **Add file → Upload files** and drag the whole `docs` folder in
-   (GitHub keeps the folder, so the file lands at
-   `assets/docs/Luxury_Stay_Studio_Portfolio.pdf`).
-5. Click **Commit changes**. After 1–2 minutes the live site updates.
-
-Keep the PDF under about 20 MB so it downloads quickly on phones.
+The **Download Portfolio PDF** buttons (in Portfolio and Contact) link to
+`assets/docs/Luxury_Stay_Studio_Portfolio.pdf`.
+To update the PDF, replace that file on GitHub and keep exactly the same name.
+Keep it under about 20 MB so it downloads quickly on phones.
 
 ## How the contact form works
 
-The form costs nothing and needs no server. When a visitor presses **Send Enquiry**,
-their own email app opens with your address and their message already filled in,
-and they press Send. Nothing is stored on the website.
+The form costs nothing and needs no server. When a visitor presses
+**Prepare Enquiry Email**, their own email app opens with a draft to
+lss.propertymedia@gmail.com containing their name, email, property type,
+location and project description. **The enquiry is only sent when they press
+Send in their email app** — the website says so clearly.
+If no email app opens (common on some computers), the site shows the prepared
+message with a **Copy enquiry** button so they can paste it into any email.
 
 ## Honesty notes
 

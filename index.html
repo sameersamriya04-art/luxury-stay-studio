@@ -111,7 +111,8 @@
         </h1>
         <p class="hero__text anim-hero">
           Cinematic films for luxury villas, Airbnb homes, boutique hotels and resorts —
-          crafted to make guests feel the stay before they book it.
+          crafted remotely from your property's photos and footage to make guests feel
+          the stay before they book it.
         </p>
         <div class="hero__actions anim-hero">
           <a href="#project-01" class="btn btn--gold">
@@ -135,8 +136,9 @@
       <div class="container container--narrow reveal">
         <span class="divider" aria-hidden="true"></span>
         <p class="intro__text">
-          A guest decides in seconds. We create films that capture the light, the space
-          and the feeling of a stay — so your property is remembered long before arrival.
+          A guest decides in seconds. We turn your property's photos and footage into films
+          that capture the light, the space and the feeling of a stay — so your property is
+          remembered long before arrival.
         </p>
         <p class="intro__for">
           For luxury villa owners · Airbnb hosts · Boutique hotels · Resorts · Property managers — worldwide
@@ -204,11 +206,8 @@
         </div>
 
         <!-- ---------- Concept notice + portfolio actions ---------- -->
-        <!--
-          PDF PORTFOLIO: upload your PDF to assets/docs/Luxury_Stay_Studio_Portfolio.pdf
-          The button below switches from "Coming soon" to a working download
-          automatically once that file exists on GitHub. See README.md.
-        -->
+        <!-- PDF PORTFOLIO: assets/docs/Luxury_Stay_Studio_Portfolio.pdf
+             To update it, replace that file on GitHub (keep the same name). -->
         <div class="portfolio-bar reveal">
           <p class="portfolio-bar__note">
             <strong>Concept work.</strong> Both films shown here are AI-assisted concept projects created by
@@ -216,10 +215,10 @@
             any future client commissions will be clearly labelled as such.
           </p>
           <div class="portfolio-bar__actions">
-            <a class="btn btn--ghost pdf-btn is-pending" data-pdf="assets/docs/Luxury_Stay_Studio_Portfolio.pdf" aria-disabled="true">
+            <a class="btn btn--ghost pdf-btn" href="assets/docs/Luxury_Stay_Studio_Portfolio.pdf" download="Luxury_Stay_Studio_Portfolio.pdf" type="application/pdf">
               <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6zM4 19h16v2H4z"/></svg>
-              <span>Download Our Portfolio</span>
-              <span class="pdf-btn__status">PDF · Coming soon</span>
+              <span>Download Portfolio PDF</span>
+              <span class="pdf-btn__status">6 pages · 2.5 MB</span>
             </a>
             <a href="#contact" class="btn btn--gold">Create Your Property Film</a>
           </div>
@@ -242,11 +241,11 @@
           or change the src="" below.
         -->
         <div class="video reveal" data-video>
-          <video class="video__player" id="aoe-video" preload="metadata" playsinline
+          <video class="video__player" id="aoe-video" controls preload="metadata" playsinline
                  poster="assets/images/art-of-escape-poster.jpg"
                  title="The Art of Escape — AI-assisted concept film by Luxury Stay Studio">
             <source src="assets/video/the-art-of-escape.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
+            <a href="assets/video/the-art-of-escape.mp4">Watch The Art of Escape (MP4)</a>
           </video>
 
           <button class="video__play" type="button" aria-label="Play The Art of Escape film">
@@ -255,12 +254,6 @@
             </span>
             <span class="video__play-label">Play Film · 0:41</span>
           </button>
-
-          <!-- Shown automatically only if the video file is missing -->
-          <div class="video__placeholder" hidden>
-            <p class="eyebrow">Video coming soon</p>
-            <p>Add your film as <code>assets/video/the-art-of-escape.mp4</code></p>
-          </div>
         </div>
 
         <div class="project-info reveal">
@@ -312,12 +305,11 @@
           </header>
 
           <div class="video reveal" data-video>
-            <video class="video__player" id="vim-video" preload="metadata" playsinline
+            <video class="video__player" id="vim-video" controls preload="metadata" playsinline
                    poster="assets/images/villa-in-motion-poster.jpg"
                    title="Villa in Motion — AI-assisted luxury villa concept film by Luxury Stay Studio">
               <source src="assets/video/Villa_In_Motion_LSS_1080p24.mp4" type="video/mp4">
-              Your browser does not support HTML5 video.
-              <a href="assets/video/Villa_In_Motion_LSS_1080p24.mp4">Download Villa in Motion (MP4)</a>
+              <a href="assets/video/Villa_In_Motion_LSS_1080p24.mp4">Watch Villa in Motion (MP4)</a>
             </video>
 
             <button class="video__play" type="button" aria-label="Play Villa in Motion, 51 seconds">
@@ -326,12 +318,6 @@
               </span>
               <span class="video__play-label">Play Film · 0:51</span>
             </button>
-
-            <!-- Shown automatically only if the video file is missing -->
-            <div class="video__placeholder" hidden>
-              <p class="eyebrow">Video coming soon</p>
-              <p>Add your film as <code>assets/video/Villa_In_Motion_LSS_1080p24.mp4</code></p>
-            </div>
           </div>
 
           <div class="project-detail">
@@ -390,40 +376,49 @@
         <header class="section-head reveal">
           <p class="eyebrow">What We Offer</p>
           <h2 class="section-title">Services</h2>
-          <p class="section-lead">Every film is shaped around your property, your guests and the places you share it.</p>
+          <p class="section-lead">Remote post-production for luxury properties worldwide. Send us your existing photos and videos — we shape them into cinematic films for your website, listings and social channels.</p>
         </header>
 
         <div class="services__grid">
           <article class="service reveal">
             <span class="service__num">01</span>
             <h3>Cinematic Property Films</h3>
-            <p>A signature film that tells the story of your property — its architecture, light, rooms and surroundings.</p>
+            <p>A signature film edited from your property's photos and footage — telling the story of its architecture, light, rooms and surroundings.</p>
           </article>
           <article class="service reveal">
             <span class="service__num">02</span>
             <h3>Social Media Reels</h3>
-            <p>Short vertical edits designed for Instagram, TikTok and YouTube Shorts, made to stop the scroll.</p>
+            <p>Short vertical edits cut from your media for Instagram, TikTok and YouTube Shorts, made to stop the scroll.</p>
           </article>
           <article class="service reveal">
             <span class="service__num">03</span>
             <h3>Booking &amp; Listing Visuals</h3>
-            <p>Polished clips and frames for Airbnb, booking platforms and your own website.</p>
+            <p>Polished clips and frames prepared from your media for Airbnb, booking platforms and your own website.</p>
           </article>
           <article class="service reveal">
             <span class="service__num">04</span>
             <h3>Hotel &amp; Resort Stories</h3>
-            <p>Brand films for boutique hotels and resorts that capture atmosphere, service and experience.</p>
+            <p>Brand films edited from your hotel or resort footage to convey atmosphere, service and experience.</p>
           </article>
           <article class="service reveal">
             <span class="service__num">05</span>
             <h3>Concept &amp; Pre-Launch Films</h3>
-            <p>AI-assisted concept films for properties still in development, clearly presented as concepts.</p>
+            <p>AI-assisted concept films created from supplied imagery — ideal for properties in development — with AI-generated elements clearly identified.</p>
           </article>
           <article class="service reveal">
             <span class="service__num">06</span>
             <h3>Edit, Colour &amp; Sound</h3>
-            <p>Careful editing, cinematic colour grading and music that sets the mood of your stay.</p>
+            <p>Careful cinematic post-production: editing, colour grading, sound design and music that set the mood of your stay.</p>
           </article>
+        </div>
+
+        <div class="services__note reveal">
+          <p class="services__note-title">Remote-first production</p>
+          <p>
+            You supply the property photos and videos; we handle the edit, colour, sound and any
+            AI-assisted concept work remotely, wherever your property is. On-location filming and
+            drone capture are not part of our current services.
+          </p>
         </div>
       </div>
     </section>
@@ -444,9 +439,10 @@
           </p>
           <p>
             Luxury Stay Studio creates cinematic visual stories for luxury villas, Airbnb homes,
-            boutique hotels, resorts and property managers around the world. We combine
-            thoughtful direction, elegant editing and modern creative tools to turn spaces into
-            experiences guests want to step into.
+            boutique hotels, resorts and property managers around the world. Working remotely,
+            we combine thoughtful creative direction, elegant post-production and AI-assisted
+            tools to turn your existing photos and footage into experiences guests want to
+            step into.
           </p>
           <p>
             Our approach is quiet, considered and detail-led — slow movement, natural light,
@@ -478,12 +474,12 @@
           <li class="step reveal">
             <span class="step__num">02</span>
             <h3>Plan</h3>
-            <p>We shape the creative concept, shot list, mood and timing around the best light.</p>
+            <p>You share your existing photos and videos. We review them and shape the story, mood and structure of the edit.</p>
           </li>
           <li class="step reveal">
             <span class="step__num">03</span>
             <h3>Create</h3>
-            <p>We capture and craft your film — composition, movement and atmosphere in every frame.</p>
+            <p>We craft your film remotely — pacing, colour, sound and atmosphere, with any AI-assisted elements clearly disclosed.</p>
           </li>
           <li class="step reveal">
             <span class="step__num">04</span>
@@ -500,7 +496,7 @@
         <div class="contact__intro reveal">
           <p class="eyebrow">Contact</p>
           <h2 class="section-title">Own a luxury property?<br><em>Let's make it unforgettable.</em></h2>
-          <p class="section-lead">Tell us about your villa, home, hotel or resort. We reply by email.</p>
+          <p class="section-lead">Tell us about your villa, home, hotel or resort and the photos or videos you already have. We reply by email.</p>
 
           <div class="contact__email">
             <a href="mailto:lss.propertymedia@gmail.com" class="contact__email-link">lss.propertymedia@gmail.com</a>
@@ -512,24 +508,24 @@
           </dl>
 
           <div class="contact__pdf">
-            <a class="btn btn--ghost pdf-btn is-pending" data-pdf="assets/docs/Luxury_Stay_Studio_Portfolio.pdf" aria-disabled="true">
+            <a class="btn btn--ghost pdf-btn" href="assets/docs/Luxury_Stay_Studio_Portfolio.pdf" download="Luxury_Stay_Studio_Portfolio.pdf" type="application/pdf">
               <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6zM4 19h16v2H4z"/></svg>
-              <span>Download Our Portfolio</span>
-              <span class="pdf-btn__status">PDF · Coming soon</span>
+              <span>Download Portfolio PDF</span>
+              <span class="pdf-btn__status">6 pages · 2.5 MB</span>
             </a>
           </div>
         </div>
 
         <!-- This form opens the visitor's email app with the message filled in.
              It is free and needs no server. -->
-        <form class="contact__form reveal" id="contact-form" novalidate>
+        <form class="contact__form reveal" id="contact-form" action="mailto:lss.propertymedia@gmail.com" method="post" enctype="text/plain" novalidate>
           <div class="field">
             <label for="cf-name">Your name</label>
-            <input id="cf-name" name="name" type="text" autocomplete="name" required>
+            <input id="cf-name" name="name" type="text" autocomplete="name" enterkeyhint="next" required>
           </div>
           <div class="field">
             <label for="cf-email">Your email</label>
-            <input id="cf-email" name="email" type="email" autocomplete="email" required>
+            <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" enterkeyhint="next" required>
           </div>
           <div class="field">
             <label for="cf-type">Property type</label>
@@ -544,16 +540,17 @@
           </div>
           <div class="field">
             <label for="cf-location">Property location</label>
-            <input id="cf-location" name="location" type="text" placeholder="City, country">
+            <input id="cf-location" name="location" type="text" enterkeyhint="next" placeholder="City, country">
           </div>
           <div class="field field--full">
-            <label for="cf-message">Tell us about your project</label>
-            <textarea id="cf-message" name="message" rows="4" required></textarea>
+            <label for="cf-message">Project description</label>
+            <textarea id="cf-message" name="message" rows="5" required placeholder="What photos or videos do you have, and where will the film be used?"></textarea>
           </div>
           <div class="field--full form__footer">
-            <button type="submit" class="btn btn--gold">Send Enquiry</button>
+            <button type="submit" class="btn btn--gold">Prepare Enquiry Email</button>
             <p class="form__note" id="form-note" role="status" aria-live="polite">
-              This opens your email app with your message ready to send.
+              This opens a pre-filled email to lss.propertymedia@gmail.com in your email app.
+              Your enquiry is only sent when you press Send there.
             </p>
           </div>
         </form>

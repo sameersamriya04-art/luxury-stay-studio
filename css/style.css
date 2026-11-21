@@ -418,7 +418,7 @@ em { font-style: italic; }
 .video__play {
   position: absolute;
   inset: 0;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -443,6 +443,7 @@ em { font-style: italic; }
 .video__play:hover .video__play-ring { transform: scale(1.08); background: var(--gold); border-color: var(--gold); color: var(--black); }
 .video__play-label { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; }
 
+.js .video__play { display: flex; }
 .video.is-playing .video__play { opacity: 0; visibility: hidden; }
 
 .video__placeholder {
@@ -458,7 +459,7 @@ em { font-style: italic; }
   border: 1px dashed rgba(198, 164, 106, 0.4);
   color: var(--white-dim);
 }
-.video__placeholder[hidden] { display: none; }
+.video__placeholder a { color: var(--gold); border-bottom: 1px solid currentColor; }
 .video__placeholder code { color: var(--gold); font-size: 14px; word-break: break-all; }
 
 .project-info {
@@ -691,7 +692,7 @@ em { font-style: italic; }
   }
 }
 
-/* PDF download button (pending until the PDF is uploaded) */
+/* PDF download button */
 .pdf-btn {
   flex-wrap: wrap;
   row-gap: 4px;
@@ -703,17 +704,9 @@ em { font-style: italic; }
   letter-spacing: 0.24em;
   color: var(--gold);
 }
-.pdf-btn.is-pending {
-  cursor: not-allowed;
-  border-style: dashed;
-  border-color: rgba(198, 164, 106, 0.45);
-  color: rgba(245, 241, 233, 0.6);
-}
-.pdf-btn.is-pending:hover { color: rgba(245, 241, 233, 0.6); border-color: rgba(198, 164, 106, 0.45); }
-.pdf-btn.is-pending .btn__icon { opacity: 0.5; }
-.pdf-btn.is-ready { border-color: var(--gold); color: var(--gold); }
-.pdf-btn.is-ready:hover { background: var(--gold); color: var(--black); }
-.pdf-btn.is-ready:hover .pdf-btn__status { color: var(--black); }
+.pdf-btn { border-color: var(--gold); color: var(--gold); }
+.pdf-btn:hover { background: var(--gold); color: var(--black); }
+.pdf-btn:hover .pdf-btn__status { color: var(--black); }
 
 /* Contact details list */
 .contact__details {
@@ -857,6 +850,21 @@ em { font-style: italic; }
 }
 .service h3 { font-size: clamp(26px, 2.6vw, 32px); margin-bottom: 16px; }
 .service p { color: var(--white-dim); font-size: 16px; margin: 0; }
+
+.services__note {
+  margin-top: clamp(32px, 5vw, 56px);
+  padding: clamp(22px, 3vw, 32px) clamp(22px, 3vw, 40px);
+  border-left: 2px solid var(--gold);
+  background: var(--black-soft);
+}
+.services__note-title {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.services__note p:last-child { margin: 0; color: var(--white-dim); font-size: 16px; }
 
 /* ---------- About ---------- */
 .about__grid {
@@ -1041,6 +1049,58 @@ em { font-style: italic; }
 .form__note { margin: 0; font-size: 13px; color: rgba(245, 241, 233, 0.5); flex: 1 1 220px; }
 .form__note.is-error { color: #e3a090; }
 .form__note.is-success { color: var(--gold); }
+
+.field select { min-height: 46px; }
+.field input { min-height: 46px; }
+.field textarea::placeholder { color: rgba(245, 241, 233, 0.3); }
+
+.form__link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.form__fallback {
+  padding: 22px;
+  border: 1px solid rgba(198, 164, 106, 0.45);
+  background: var(--black-soft);
+  font-size: 15px;
+  color: var(--white-dim);
+}
+.form__fallback-title {
+  margin: 0 0 6px;
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.form__fallback a:not(.btn) { color: var(--gold); word-break: break-word; }
+.form__fallback-label {
+  display: block;
+  margin: 14px 0 6px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.form__fallback-text {
+  width: 100%;
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--white);
+  background: var(--black);
+  border: 1px solid var(--black-line);
+  padding: 12px;
+  resize: vertical;
+}
+.form__fallback-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+@media (max-width: 600px) {
+  .form__fallback-actions .btn { flex: 1 1 100%; }
+}
 
 /* ---------- Footer ---------- */
 .footer {

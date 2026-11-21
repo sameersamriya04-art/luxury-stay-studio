@@ -5,10 +5,10 @@
    2. Mobile menu
    3. Active link highlighting
    4. Scroll reveal animations
-   5. Portfolio video players
+   5. Portfolio video players + card "Watch Film" links
    6. Logo fallback
    7. Copy email button
-   8. Contact form (opens the visitor's email app — free, no server)
+   8. Contact form (prepares an email draft in the visitor's email app — free, no server)
    9. Footer year
    ========================================================= */
 
@@ -103,31 +103,53 @@
   }
 
   /* ---------- 5. Portfolio video players ---------- */
-  // Works for every film on the page (any element with data-video)
+  // Every film uses the browser's own video controls (they also work without
+  // JavaScript). This script adds the gold play overlay, keeps only one film
+  // playing at a time, and shows a short notice only if a film truly fails to load.
   var allVideos = [];
 
   document.querySelectorAll("[data-video]").forEach(function (videoWrap) {
     var video = videoWrap.querySelector("video");
     var playBtn = videoWrap.querySelector(".video__play");
-    var placeholder = videoWrap.querySelector(".video__placeholder");
     var source = video.querySelector("source");
+    var fileUrl = source ? source.getAttribute("src") : video.getAttribute("src");
+    var failed = false;
     allVideos.push(video);
 
-    function showPlaceholder() {
-      placeholder.hidden = false;
-      playBtn.hidden = true;
-      video.hidden = true;
+    function showLoadError() {
+      if (failed) return;
+      failed = true;
+      if (playBtn) playBtn.hidden = true;
+      var box = document.createElement("div");
+      box.className = "video__placeholder";
+      box.setAttribute("role", "status");
+      box.innerHTML =
+        '<p class="eyebrow">Film unavailable</p>' +
+        "<p>This film could not be loaded right now. Please refresh the page or " +
+        '<a href="' + fileUrl + '">open the film directly</a>.</p>';
+      videoWrap.appendChild(box);
     }
 
-    // If the video file is missing, show a tidy placeholder instead of an error
-    if (source) source.addEventListener("error", showPlaceholder);
-    video.addEventListener("error", showPlaceholder);
+    // Only treat it as missing when the browser has genuinely given up on the file
+    video.addEventListener("error", showLoadError);
+    if (source) {
+      source.addEventListener("error", function () {
+        if (video.networkState === 3 /* NETWORK_NO_SOURCE */) showLoadError();
+      });
+    }
+    if (video.error || video.networkState === 3) showLoadError();
 
-    playBtn.addEventListener("click", function () {
-      video.controls = true;
-      var attempt = video.play();
-      if (attempt && attempt.catch) attempt.catch(function () { /* user can press play in controls */ });
-    });
+    if (playBtn) {
+      playBtn.addEventListener("click", function () {
+        var attempt = video.play();
+        if (attempt && attempt.catch) {
+          attempt.catch(function () {
+            // Playback was blocked: reveal the native controls so the visitor can press play.
+            videoWrap.classList.add("is-playing");
+          });
+        }
+      });
+    }
 
     video.addEventListener("play", function () {
       videoWrap.classList.add("is-playing");
@@ -136,7 +158,6 @@
     });
     video.addEventListener("ended", function () {
       videoWrap.classList.remove("is-playing");
-      video.controls = false;
       video.load(); // return to the poster image
     });
 
@@ -154,7 +175,7 @@
   document.querySelectorAll("[data-play-target]").forEach(function (link) {
     link.addEventListener("click", function () {
       var target = document.getElementById(link.getAttribute("data-play-target"));
-      if (!target || target.hidden) return;
+      if (!target) return;
       var btn = target.parentNode.querySelector(".video__play");
       var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       setTimeout(function () {
@@ -162,30 +183,6 @@
       }, reduced ? 100 : 900);
     });
   });
-
-  /* ---------- 5b. "Download Our Portfolio" PDF button ---------- */
-  // The button shows "Coming soon" until the PDF is uploaded to GitHub at
-  // assets/docs/Luxury_Stay_Studio_Portfolio.pdf. When the file exists,
-  // it becomes a working download automatically — no code change needed.
-  var pdfButtons = document.querySelectorAll(".pdf-btn[data-pdf]");
-  if (pdfButtons.length && window.fetch && location.protocol.indexOf("http") === 0) {
-    var pdfPath = pdfButtons[0].getAttribute("data-pdf");
-    fetch(pdfPath, { method: "HEAD", cache: "no-store" })
-      .then(function (res) {
-        var type = res.headers.get("content-type") || "";
-        if (!res.ok || type.indexOf("pdf") === -1) return;
-        pdfButtons.forEach(function (btn) {
-          btn.setAttribute("href", pdfPath);
-          btn.setAttribute("download", "");
-          btn.removeAttribute("aria-disabled");
-          btn.classList.remove("is-pending");
-          btn.classList.add("is-ready");
-          var status = btn.querySelector(".pdf-btn__status");
-          if (status) status.textContent = "PDF";
-        });
-      })
-      .catch(function () { /* keep the "Coming soon" state */ });
-  }
 
   /* ---------- 6. Logo fallback ---------- */
   // If the logo image can't load, show the brand name in text instead.
@@ -228,10 +225,53 @@
   });
 
   /* ---------- 8. Contact form ---------- */
+  // Free and serverless: the form prepares an email draft to EMAIL in the
+  // visitor's own email app. Nothing is sent until they press Send there.
   var form = document.getElementById("contact-form");
   var note = document.getElementById("form-note");
 
   if (form) {
+    var fallback = null;
+
+    function copyText(text, btn) {
+      var original = btn.textContent;
+      function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = original; }, 2200); }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () { done("Copied ✓"); }, function () { done("Select & copy manually"); });
+      } else {
+        var area = document.createElement("textarea");
+        area.value = text; area.setAttribute("readonly", "");
+        area.style.position = "absolute"; area.style.left = "-9999px";
+        document.body.appendChild(area); area.select();
+        try { document.execCommand("copy"); done("Copied ✓"); } catch (err) { done("Select & copy manually"); }
+        document.body.removeChild(area);
+      }
+    }
+
+    // Panel with the prepared message, for visitors whose email app doesn't open
+    function showFallback(subject, body, mailto) {
+      if (!fallback) {
+        fallback = document.createElement("div");
+        fallback.className = "form__fallback field--full";
+        fallback.innerHTML =
+          '<p class="form__fallback-title">Email app didn\'t open?</p>' +
+          '<p>Copy your enquiry below and email it to <a href="mailto:' + EMAIL + '">' + EMAIL + '</a> from any email account.</p>' +
+          '<label class="form__fallback-label" for="cf-prepared">Your prepared enquiry</label>' +
+          '<textarea id="cf-prepared" class="form__fallback-text" rows="8" readonly></textarea>' +
+          '<div class="form__fallback-actions">' +
+          '<button type="button" class="btn btn--gold btn--small" data-fallback-copy>Copy enquiry</button>' +
+          '<a class="btn btn--ghost btn--small" data-fallback-retry>Try email app again</a>' +
+          '</div>';
+        form.appendChild(fallback);
+        fallback.querySelector("[data-fallback-copy]").addEventListener("click", function () {
+          copyText(fallback.querySelector("textarea").value, this);
+        });
+      }
+      fallback.querySelector("textarea").value = "To: " + EMAIL + "\nSubject: " + subject + "\n\n" + body;
+      fallback.querySelector("[data-fallback-retry]").setAttribute("href", mailto);
+      fallback.hidden = false;
+    }
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -249,17 +289,19 @@
       var place = fields.location.value.trim();
       var message = fields.message.value.trim();
 
-      // Simple checks so visitors don't send an empty enquiry
+      // Simple checks so visitors don't prepare an empty enquiry
       var errors = [];
       form.querySelectorAll(".field").forEach(function (f) { f.classList.remove("has-error"); });
 
       if (!name) { errors.push("your name"); fields.name.parentNode.classList.add("has-error"); }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errors.push("a valid email"); fields.email.parentNode.classList.add("has-error"); }
-      if (!message) { errors.push("a short message"); fields.message.parentNode.classList.add("has-error"); }
+      if (!message) { errors.push("a project description"); fields.message.parentNode.classList.add("has-error"); }
 
       if (errors.length) {
         note.textContent = "Please add " + errors.join(", ") + ".";
         note.className = "form__note is-error";
+        var firstBad = form.querySelector(".has-error input, .has-error textarea");
+        if (firstBad) firstBad.focus();
         return;
       }
 
@@ -268,16 +310,46 @@
         "Name: " + name + "\n" +
         "Email: " + email + "\n" +
         "Property type: " + type + "\n" +
-        "Location: " + (place || "—") + "\n\n" +
-        message;
-
-      window.location.href =
+        "Property location: " + (place || "Not specified") + "\n\n" +
+        "Project description:\n" + message + "\n";
+      var mailto =
         "mailto:" + EMAIL +
         "?subject=" + encodeURIComponent(subject) +
         "&body=" + encodeURIComponent(body);
 
-      note.textContent = "Your email app should open now. If it doesn't, write to " + EMAIL + ".";
-      note.className = "form__note is-success";
+      // Detect whether an email app actually took over (page loses focus / is hidden)
+      var appOpened = false;
+      function markOpened() { appOpened = true; }
+      window.addEventListener("blur", markOpened, { once: true });
+      document.addEventListener("visibilitychange", markOpened, { once: true });
+      window.addEventListener("pagehide", markOpened, { once: true });
+
+      window.location.href = mailto;
+
+      note.textContent = "Opening your email app…";
+      note.className = "form__note";
+
+      setTimeout(function () {
+        window.removeEventListener("blur", markOpened);
+        document.removeEventListener("visibilitychange", markOpened);
+        window.removeEventListener("pagehide", markOpened);
+        if (appOpened) {
+          note.textContent = "Your email draft is ready. Please review it and press Send in your email app — your enquiry has not been sent until you do.";
+          note.className = "form__note is-success";
+          if (fallback) fallback.hidden = true;
+          var manual = document.createElement("button");
+          manual.type = "button";
+          manual.className = "form__link";
+          manual.textContent = "Email app didn't open? Copy the enquiry instead";
+          manual.addEventListener("click", function () { showFallback(subject, body, mailto); manual.remove(); });
+          note.appendChild(document.createTextNode(" "));
+          note.appendChild(manual);
+        } else {
+          note.textContent = "We couldn't open an email app on this device. Your enquiry has not been sent — please copy it below and email us directly.";
+          note.className = "form__note is-error";
+          showFallback(subject, body, mailto);
+        }
+      }, 1800);
     });
   }
 
