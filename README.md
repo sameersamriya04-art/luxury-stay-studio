@@ -1,93 +1,73 @@
-# Luxury Stay Studio — Official Website
+# Luxury Stay Studio — Official Website (v2, immersive 3D)
 
-**We Turn Properties Into Experiences.** · PROPERTY CINEMATICS
-Contact: lss.propertymedia@gmail.com
+**Where luxury becomes cinematic.** · PROPERTY CINEMATICS
+Live site: https://sameersamriya04-art.github.io/luxury-stay-studio/
+Contact: lss.propertymedia@gmail.com · WhatsApp +91 63671 42927
 
-This is a simple, fast website made only with HTML, CSS and JavaScript.
-It needs no build tools, no paid services and no server code.
+Built with React, Vite, Three.js / React Three Fiber, GSAP + ScrollTrigger,
+Lenis smooth scrolling, Framer Motion, Tailwind CSS and Lucide icons.
 
 ---
 
-## What's in this folder
+## How the project is organised
 
-| File / folder | What it does |
+| Folder / file | What it is |
 |---|---|
-| `index.html` | The website's content: all the text, sections and links |
-| `css/style.css` | The design: colours, fonts, spacing, animations and the phone layout |
-| `js/main.js` | The behaviour: phone menu, scroll animations, video player, contact form |
-| `assets/logo/lss-logo.png` | Your logo (transparent background) |
-| `assets/logo/favicon.svg` | The small icon in the browser tab |
-| `assets/video/the-art-of-escape.mp4` | Project 01 — *The Art of Escape* film |
-| `assets/video/Villa_In_Motion_LSS_1080p24.mp4` | Project 02 — *Villa in Motion* film |
-| `assets/images/` | Photos used on the page |
-| `.nojekyll` | Tells GitHub Pages to show the site exactly as-is |
+| `web/` | **The source code** — this is what you edit |
+| `web/src/data/content.js` | **All site settings & text lists**: email, WhatsApp, Instagram, projects, services, process steps, markets |
+| `web/src/components/` | One file per section (Hero, Work, Services, Signature, Process, Reach, FinalCTA, Footer…) |
+| `web/src/three/` | The 3D scenes (hero villa scene, globe) |
+| `index.html` + `bundle/` (repo root) | **The built website** that GitHub Pages serves. Generated — don't edit by hand |
+| `assets/images/web/` | Optimised WebP images (960px for phones, 1920px for large screens) |
+| `assets/video/` | The two concept films |
+| `assets/docs/Luxury_Stay_Studio_Portfolio.pdf` | The downloadable portfolio |
+| `assets/logo/` | Logo and favicon |
 
-## See the website on your computer
+## Making changes (on a computer)
 
-Double-click `index.html` and it opens in your browser. That's it.
+You need [Node.js](https://nodejs.org) (version 18 or newer) installed once.
 
-## Put the website online for free (GitHub Pages)
+```bash
+cd web
+npm install        # first time only
+npm run dev        # live preview at http://localhost:5173 while you edit
+npm run build      # builds the final site into the repo root (index.html + bundle/)
+```
 
-1. On GitHub, open this repository and click **Settings**.
-2. In the left menu, click **Pages**.
-3. Under **Build and deployment → Source**, choose **Deploy from a branch**.
-4. Choose your branch (for example `main`), choose the folder `/ (root)`, and click **Save**.
-5. Wait 1–2 minutes. GitHub then shows your website address
-   (it looks like `https://your-username.github.io/luxury-stay-studio/`).
+Then commit and push everything (including `index.html` and `bundle/`).
+GitHub Pages updates the live site automatically within 1–2 minutes.
 
-## Common changes
+> Editing the root `index.html` directly won't stick — `npm run build` regenerates it.
+> Edit files in `web/` instead.
 
-**Change any text:** open `index.html` and edit the words between the tags.
-Each section is marked with a comment like `<!-- ============ 3. SERVICES ============ -->`.
+### Common edits — all in `web/src/data/content.js`
 
-**Replace the logo:** save your original logo as a PNG with a transparent background,
-name it `lss-logo.png`, and replace the file in `assets/logo/`.
-(The current logo was cut from the last frame of your video. Your original file will look sharper.)
+- **Add your Instagram:** set `INSTAGRAM_HANDLE = "yourhandle"` (without the @). The footer link appears automatically.
+- **Change WhatsApp:** `WHATSAPP_NUMBER` (digits with country code) and `WHATSAPP_DISPLAY`.
+- **Change email:** `EMAIL`.
+- **Edit services, process steps, markets or project text:** edit the lists in the same file.
 
-**Replace the video:** put your new film in `assets/video/` with the name
-`the-art-of-escape.mp4`. If a film can't be loaded, the player shows a short
-"Film unavailable" notice with a direct link instead of an error. Keep videos under about 50 MB
-(GitHub refuses files over 100 MB).
+## Deployment (GitHub Pages)
 
-**Replace a video cover image:** replace `assets/images/art-of-escape-poster.jpg`
-(Project 01) or `assets/images/villa-in-motion-poster.jpg` (Project 02).
-The smaller `...-card.jpg` images are the thumbnails on the portfolio cards.
+No special setup is needed. Pages is set to **Deploy from a branch → `/ (root)`**, and the
+build writes the finished site straight into the root (`index.html`, `bundle/`, `.nojekyll`).
 
-**Portfolio layout:** the Portfolio section shows two cards (one per film), then
-Project 01 *The Art of Escape*, then Project 02 *Villa in Motion*, then a
-"Your Property. Its Own Story." button that jumps to the contact form.
-To add Project 03 later, copy the Project 02 block in `index.html`
-(it starts at `<!-- ============ PROJECT 02`) and copy one of the cards.
+## Performance & accessibility
 
-**Replace photos:** replace the files in `assets/images/` and keep the same names,
-or change the `src="..."` in `index.html`.
-
-**Change colours:** at the top of `css/style.css`:
-`--black: #111111;` `--gold: #C6A46A;` `--white: #F5F1E9;`
-
-**Change your services:** they're in `index.html` under `3. SERVICES`.
-Edit them so they match exactly what you offer.
-
-## PDF portfolio
-
-The **Download Portfolio PDF** buttons (in Portfolio and Contact) link to
-`assets/docs/Luxury_Stay_Studio_Portfolio.pdf`.
-To update the PDF, replace that file on GitHub and keep exactly the same name.
-Keep it under about 20 MB so it downloads quickly on phones.
-
-## How the contact form works
-
-The form costs nothing and needs no server. When a visitor presses
-**Prepare Enquiry Email**, their own email app opens with a draft to
-lss.propertymedia@gmail.com containing their name, email, property type,
-location and project description. **The enquiry is only sent when they press
-Send in their email app** — the website says so clearly.
-If no email app opens (common on some computers), the site shows the prepared
-message with a **Copy enquiry** button so they can paste it into any email.
+- The 3D code (Three.js) only downloads on devices that will use it. Phones with little memory,
+  visitors who prefer reduced motion, and browsers without WebGL get a static cinematic image
+  and a flat dotted world map instead.
+- 3D scenes pause automatically when scrolled out of view.
+- Phones download the smaller 960px images.
+- "Reduce motion" settings are respected (no smooth scrolling, pinning or 3D).
+- Visitors without JavaScript still see the films, PDF link, email and WhatsApp.
 
 ## Honesty notes
 
-- *The Art of Escape* and *Villa in Motion* are clearly labelled everywhere as an **AI-assisted conceptual
-  project, not real/commissioned client work**.
-- The site has no made-up clients, testimonials, awards or numbers. When you have real
-  client projects, you can add them in the Portfolio section.
+- *The Art of Escape* and *Villa in Motion* are labelled everywhere as **AI-assisted concept
+  projects, not commissioned client work**. Site imagery comes from these concept films.
+- LSS is presented as **remote-first**: clients supply photos and footage; LSS edits, grades,
+  adds sound and creates disclosed AI-assisted concept work. "Aerial Footage Editing" means
+  editing client-supplied drone clips — the site states that LSS does not film on location or fly drones.
+- The markets in Global Reach are **focus markets**, not a list of past clients.
+- No testimonials, client names, awards or results are shown.
