@@ -42,6 +42,7 @@ export const PROJECTS = [
     production: "AI-assisted",
     runtime: "0:41",
     video: "assets/video/the-art-of-escape.mp4",
+    preview: "assets/video/preview-the-art-of-escape.mp4", // 10s silent loop shown inside the card
     poster: "assets/images/art-of-escape-poster.jpg",
     image: "aoe-terrace",
     alt: "Infinity pool terrace overlooking the sea at golden hour — still from The Art of Escape",
@@ -57,6 +58,7 @@ export const PROJECTS = [
     production: "AI-assisted",
     runtime: "0:51",
     video: "assets/video/Villa_In_Motion_LSS_1080p24.mp4",
+    preview: "assets/video/preview-villa-in-motion.mp4", // 10s silent loop shown inside the card
     poster: "assets/images/villa-in-motion-poster.jpg",
     image: "vim-sunset",
     alt: "Tropical stone and timber villa with an infinity pool at dusk — still from Villa in Motion",

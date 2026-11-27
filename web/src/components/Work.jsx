@@ -1,14 +1,41 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { ArrowUpRight, Download, Play } from "lucide-react";
 import { gsap } from "../lib/smooth";
-import { prefersReducedMotion } from "../lib/env";
+import { prefersReducedMotion, isLowPower } from "../lib/env";
 import { PROJECTS, PDF } from "../data/content";
 import Img from "./Img";
 import Magnetic from "./Magnetic";
 import VideoModal from "./VideoModal";
 import { onAnchorClick } from "./Header";
 
+// Silent looping preview that plays inside the card while it's on screen.
+// (The full film with sound opens in the player when the card is clicked.)
+function usePreview(ref, src) {
+  const [playing, setPlaying] = useState(false);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v || !src || prefersReducedMotion() || isLowPower() || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          if (!v.src) { v.muted = true; v.setAttribute("muted", ""); v.src = src; v.load(); }
+          const pr = v.play();
+          if (pr && pr.catch) pr.catch(() => {}); // autoplay refused: the still image stays
+        } else if (!v.paused) v.pause();
+      },
+      { rootMargin: "0px 200px 0px 200px", threshold: 0.15 }
+    );
+    io.observe(v.parentElement);
+    const on = () => setPlaying(true);
+    v.addEventListener("playing", on);
+    return () => { io.disconnect(); v.removeEventListener("playing", on); v.pause(); };
+  }, [ref, src]);
+  return playing;
+}
+
 function ProjectCard({ p, onPlay }) {
+  const preview = useRef(null);
+  const previewPlaying = usePreview(preview, p.preview);
   return (
     <article className="work-card group relative flex w-full shrink-0 flex-col lg:w-[56vw] lg:max-w-[1000px]">
       <button
@@ -18,15 +45,22 @@ function ProjectCard({ p, onPlay }) {
         className="relative block aspect-[16/10] w-full overflow-hidden bg-charcoal lg:aspect-[16/9]"
         aria-label={`Play ${p.title} — ${p.runtime} film`}
       >
-        <Img
-          name={p.image}
-          alt={p.alt}
-          sizes="(min-width: 1024px) 56vw, 100vw"
-          className="work-img absolute inset-0 h-full w-full scale-[1.12] object-cover transition-transform duration-[1600ms] ease-luxe group-hover:scale-[1.18]"
-        />
+        <div className="work-img absolute inset-0 scale-[1.12] transition-transform duration-[1600ms] ease-luxe group-hover:scale-[1.18]">
+          <Img name={p.image} alt={p.alt} sizes="(min-width: 1024px) 56vw, 100vw" className="absolute inset-0 h-full w-full object-cover" />
+          <video
+            ref={preview}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-luxe ${previewPlaying ? "opacity-100" : "opacity-0"}`}
+            muted
+            loop
+            playsInline
+            preload="none"
+            aria-hidden="true"
+            tabIndex={-1}
+          />
+        </div>
         <span className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent" aria-hidden="true" />
         <span className="chip absolute left-4 top-4">AI-assisted concept</span>
-        <span className="absolute bottom-4 right-4 bg-ink/70 px-2.5 py-1 text-[11px] tracking-[0.14em]">{p.runtime}</span>
+        <span className="absolute bottom-4 right-4 bg-ink/70 px-2.5 py-1 text-[11px] tracking-[0.14em]">{previewPlaying ? "Preview · " : ""}Full film {p.runtime}</span>
         <span className="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-ivory/70 text-ivory backdrop-blur-sm transition-all duration-500 ease-luxe group-hover:scale-110 group-hover:border-gold group-hover:bg-gold group-hover:text-ink lg:[@media(hover:hover)]:opacity-0 lg:group-hover:opacity-100">
           <Play size={22} fill="currentColor" className="ml-1" aria-hidden="true" />
         </span>
