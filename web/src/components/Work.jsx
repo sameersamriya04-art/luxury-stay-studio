@@ -27,7 +27,7 @@ function ProjectCard({ p, onPlay }) {
         <span className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent" aria-hidden="true" />
         <span className="chip absolute left-4 top-4">AI-assisted concept</span>
         <span className="absolute bottom-4 right-4 bg-ink/70 px-2.5 py-1 text-[11px] tracking-[0.14em]">{p.runtime}</span>
-        <span className="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-ivory/70 text-ivory backdrop-blur-sm transition-all duration-500 ease-luxe group-hover:scale-110 group-hover:border-gold group-hover:bg-gold group-hover:text-ink lg:opacity-0 lg:group-hover:opacity-100">
+        <span className="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-ivory/70 text-ivory backdrop-blur-sm transition-all duration-500 ease-luxe group-hover:scale-110 group-hover:border-gold group-hover:bg-gold group-hover:text-ink lg:[@media(hover:hover)]:opacity-0 lg:group-hover:opacity-100">
           <Play size={22} fill="currentColor" className="ml-1" aria-hidden="true" />
         </span>
       </button>

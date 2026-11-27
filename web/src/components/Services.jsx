@@ -29,15 +29,15 @@ function ServiceCard({ s, i }) {
       className="svc-card group relative flex min-h-[340px] flex-col justify-between overflow-hidden border border-line bg-ink p-8 lg:min-h-[420px] lg:p-10"
       style={{ transformStyle: "preserve-3d" }}
     >
-      <div className="absolute inset-0 opacity-0 transition-opacity duration-700 ease-luxe group-hover:opacity-100" aria-hidden="true">
+      <div className="absolute inset-0 opacity-100 transition-opacity duration-700 ease-luxe [@media(hover:hover)]:opacity-30 [@media(hover:hover)]:group-hover:opacity-100" aria-hidden="true">
         <Img name={s.image} sizes="(min-width: 1024px) 33vw, 100vw" className="h-full w-full scale-110 object-cover transition-transform duration-[1800ms] ease-luxe group-hover:scale-100" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/50" />
       </div>
       <span className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gold transition-transform duration-700 ease-luxe group-hover:scale-x-100" aria-hidden="true" />
       <span className="relative font-serif text-2xl italic text-gold" style={{ transform: "translateZ(30px)" }}>0{i + 1}</span>
       <div className="relative" style={{ transform: "translateZ(40px)" }}>
         <h3 className="font-serif text-[clamp(28px,2.4vw,36px)] font-light leading-tight">{s.title}</h3>
-        <p className="mt-4 text-[15px] leading-relaxed text-ivory/65 transition-colors duration-500 group-hover:text-ivory/85">{s.text}</p>
+        <p className="mt-4 text-[15px] leading-relaxed text-ivory/80 transition-colors duration-500 [@media(hover:hover)]:text-ivory/65 [@media(hover:hover)]:group-hover:text-ivory/85">{s.text}</p>
       </div>
     </article>
   );
